@@ -21,6 +21,7 @@ class UserController {
   }
 
   async update(request, response) {
+    // console.log(request.userId);
     return response.json({ ok: true });
   }
 }
