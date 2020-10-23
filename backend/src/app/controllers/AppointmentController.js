@@ -57,6 +57,15 @@ class AppointmentController {
         .json({ error: 'You can only create appointments with providers' });
     }
 
+    // Check id between user and provider
+    const user_id = request.userId;
+
+    if (provider_id === user_id) {
+      return response
+        .status(401)
+        .json({ error: 'You cannot create on appointment with you' });
+    }
+
     // Check for past dates
 
     const hourStart = startOfHour(parseISO(date));
@@ -83,7 +92,7 @@ class AppointmentController {
     }
 
     const appointment = await Appointment.create({
-      user_id: request.userId,
+      user_id,
       provider_id,
       date: hourStart,
     });
