@@ -84,7 +84,6 @@ class AppointmentController {
       where: {
         provider_id,
         canceled_at: null,
-
         date: hourStart,
       },
     });
